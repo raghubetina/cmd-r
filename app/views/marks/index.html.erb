@@ -1,0 +1,26 @@
+<%- model_class = Mark -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:url) %></th>
+      <th><%= model_class.human_attribute_name(:selector) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @marks.each do |mark| %>
+      <tr>
+        <td><%= link_to mark.url, mark %></td>
+        <td><%= link_to mark.selector, mark %></td>
+        <td><%= time_ago_in_words(mark.created_at) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_mark_path,
+            :class => 'btn btn-primary' %>

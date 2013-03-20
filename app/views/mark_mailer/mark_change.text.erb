@@ -1,0 +1,8 @@
+Mark Changed
+============
+
+You asked us to keep an eye on the <%= @mark.selector %> part of <%= @mark.url %>.
+
+Well, it just changed! Now it looks like this:
+
+<%=  Diffy::Diff.new(@mark.old_content, @mark.content, :include_plus_and_minus_in_html => true).to_s(:html_simple) %>

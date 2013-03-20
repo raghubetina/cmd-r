@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css">
+      .diff ul {
+        list-style: none;
+        margin-left: 0;
+      }
+
+      .del {
+        background-color: Pink;
+      }
+
+      .ins {
+        background-color: PaleGreen;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><%= link_to "Mark", mark_url(@mark) %> Changed</h1>
+    <p>
+      You asked us to keep an eye on the <%= @mark.selector %> part of <%= link_to @mark.url, @mark.url %>.
+    </p>
+    <p>
+      Well, it just changed! Now it looks like this:
+    </p>
+    <div class="diff">
+      <%=  Diffy::Diff.new(@mark.old_content, @mark.content, :include_plus_and_minus_in_html => true).to_s(:html_simple).html_safe %></dd>
+    </div>
+  </body>
+</html>
